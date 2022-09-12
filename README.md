@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Sobre
+O objetivo deste repositório é manter anotações e exemplos práticos de aprendizado acerca de React JS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Anotações gerais e convenções
+App.js é utilizado por convenção como o arquivo principal da aplicação, aonde são centralizados todos os outros componentes.
+Componentes ficam em pasta chamada components.
 
-## Available Scripts
+A motivação principal de um componente precisa ser reutilizával.
 
-In the project directory, you can run:
+## Props
+São valores passados para componentes.
+Podemos num componente, pegar valores de propriedades de outro componente.
+Cria-se as props no elemento filho. Importa o elemento filho para um elemento o pai. O elemento pai atribui valor ás props.
+**PropTypes** é utilizado para especificar que tipo de objeto é o props. Exemplo de utilização: 
+```
+function Item({ marca, ano }) {
+    return(
+        <li>{ marca } - { ano }<li/>
+    )
+}
 
-### `npm start`
+Item.propTypes = {
+    marca: PropTypes.string,
+    ano: PropTypes.number,
+}
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O componente Item recebe duas props: marca e ano. Com `Item.propTypes` define-se o tipo de dado que as props terão.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## CSS com React
+A nível global por meio do index.css
+A nível de componentes através do CSS modules, criando um CSS para cada componente e nomeando convencionalmente como `Componente.module.css`. Depois, basta importá-lo no componente: `import styles from '.Caminho/Arquivo.css'`
 
-### `npm test`
+O CSS modules não permite criar classes com hífen `nome-classe`. Usa-se camel case ou underline `nomeClasse` ou `nome_classe`
+Com `PropTypes.string.isRequired` é possível fazer com que a props seja obrigatória.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+É possível passar argumentos padrão para o props através do **defaultProps**. Exemplo:
 
-### `npm run build`
+```
+Item.defaultProps = {
+    marca: 'Sem marca',
+    ano: '0'
+}
+```
+Com isso. ao criar o componente sem os valores do props, o mesmo receberá os valores padrão pré configurados. Ao usar o defaultProps, o `isRequired` passa a não ser mais obrigatório.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Fragments
+Adicionar componentes a partir das tags `<>` e `</>`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Eventos no React
+Eventos mais utilizados para manipulação de formulários:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**onClick**
+**onChange**
+**onSubmit**
