@@ -174,3 +174,71 @@ Nos permite pegar o dado em seu valor original como argumento antes da modifica�
 
 **CSS Global**
 index.css utilizado para configurações gerais, resets, etc.
+
+## Formulários com React
+
+**Como obter dados de um input**
+
+**Opção 1 - Com função**
+
+*useState*
+
+```
+const [name, setName] = useState();
+
+const handleName = (e) => {
+    setName(e.target.value)
+}
+```
+*Executa a função no input*
+
+`<input onChange={handleName}></>`
+
+**Opção 2 - Inline**
+Utilizada para manipulação simples, apenas captura de dados, sem necessidade de instruções em bloco.
+
+`<input onChange={(e) => setName(e.value.target)}></>`
+
+**Como enviar dados a partir de um form**
+
+Adicionar evento onSubmit no form
+
+<form onSubmit={haldleSubmit}>
+</form>
+
+```
+const haldleSubmit = (e) => {
+    e.preventDefault() //evita que haja reload da página ao clicar no botão de enviar
+    console.log(name)
+}
+```
+
+**Controlled inputs**
+Preencher valores dos inputs
+
+*useState*
+
+`const [name, setName] = useState(user ? user.name : "");`
+`const [email, setEmail] = useState(user ? user.email : "");`
+
+user foi um array de objetos passado como prop para o componente, mas pode ser uma variável do próprio componente.
+
+`<input value={name}>Nome</>`
+`<input value={emai}>Email</>`
+
+**Limpar form após o envio**
+Zerar inputs após envio com sucesso. Para isso, basta esvaziar o conteúdo do useState
+
+```
+const haldleSubmit = (e) => {
+    e.preventDefault() //evita que haja reload da página ao clicar no botão de enviar
+    setName("") // com isso zera
+
+}
+```
+**Text area**
+Funciona da mesma forma que o input
+
+**Select no React**
+Semelhante aos inputs, aplicando evento `onChange`
+O valor do select está em `option`
