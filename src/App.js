@@ -1,12 +1,41 @@
 import './App.css';
-import InputTest from './components/InputTest';
+import UserDetails from './components/UserDetails';
+
+const persons = [
+
+  {
+      id: 1,
+      name: "Anderson",
+      age: 38,
+  },
+
+  {
+      id: 2,
+      name: "Larissa",
+      age: 30,
+  },
+
+  {
+      id: 3,
+      name: "Pedro",
+      age: 6,
+  }
+
+]
 
 function App() {
+
+
   return (
-    <InputTest/>
-    
-    
-  );
+
+    <>
+
+    {persons.map((person) => (
+      <UserDetails key={person.id} name={person.name} age={person.age} />
+    ))}
+
+    </>
+  )
 }
 
 export default App;
